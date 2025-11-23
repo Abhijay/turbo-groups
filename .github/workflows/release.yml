@@ -44,5 +44,7 @@ jobs:
         run: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # NPM_TOKEN is no longer needed - @semantic-release/npm v13.1.0+ supports
+          # trusted publishing (OIDC) automatically when id-token: write permission is set
 
 
