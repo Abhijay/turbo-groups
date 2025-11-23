@@ -1,0 +1,54 @@
+name: Monorepo - Validate PR Title
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate PR title follows Conventional Commits
+        uses: amannn/action-semantic-pull-request@v3.2.6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Find existing Conventional Commit Comment
+        if: ${{ failure() }}
+        id: find-comment
+        uses: peter-evans/find-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: github-actions[bot]
+          body-includes: 'did not conform to [conventional commits]'
+
+      - name: Post Conventional Commit Comment (on failure)
+        if: ${{ failure() }}
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          body: |
+            Your pull request title did not conform to [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) standards. Our automated release pipeline will automatically determine
+            the proper release version based on your pull request title.
+
+            **Cheat Sheet**
+
+            - feat: A new feature
+            - fix: A bug fix
+            - docs: Documentation only changes
+            - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+            - refactor: A code change that neither fixes a bug nor adds a feature
+            - perf: A code change that improves performance
+            - test: Adding missing tests or correcting existing tests
+            - build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+            - ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+            - chore: Other changes that don't modify src or test files
+            - revert: Reverts a previous commit
+
+
