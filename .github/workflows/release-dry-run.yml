@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
+          # Do NOT set registry-url - it creates .npmrc which prevents OIDC trusted publishing
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -32,6 +32,13 @@ jobs:
 
       - name: Update npm
         run: npm install -g npm@latest
+
+      - name: Ensure no .npmrc exists (required for OIDC trusted publishing)
+        run: |
+          # Remove any .npmrc files that might prevent OIDC from activating
+          rm -f .npmrc ~/.npmrc $HOME/.npmrc
+          # Verify npm config has no auth tokens
+          npm config list
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
