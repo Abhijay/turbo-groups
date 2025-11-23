@@ -1,5 +1,5 @@
 {
-    "name": "turbo-groups",
+    "name": "@abhijayb/turbo-groups",
     "version": "1.0.0",
     "description": "Simplify Turborepo task execution with named package groups",
     "keywords": [
@@ -10,7 +10,7 @@
         "filters",
         "workspace"
     ],
-    "author": "Cloaked Inc.",
+    "author": "Abhijay Bhatnagar",
     "license": "MIT",
     "type": "module",
     "main": "./dist/index.js",
@@ -50,11 +50,11 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/abhijay/monorepo-groups.git"
+        "url": "https://github.com/abhijay/turbo-groups.git"
     },
     "bugs": {
-        "url": "https://github.com/abhijay/monorepo-groups/issues"
+        "url": "https://github.com/abhijay/turbo-groups/issues"
     },
-    "homepage": "https://github.com/abhijay/monorepo-groups#readme"
+    "homepage": "https://github.com/abhijay/turbo-groups#readme"
 }
 
