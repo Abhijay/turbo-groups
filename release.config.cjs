@@ -1,5 +1,5 @@
 /** @type {import('semantic-release').Options} */
-module.exports = {
+module.exports = { // eslint-disable-line
     branches: ['main'],
     repositoryUrl: 'https://github.com/Abhijay/turbo-groups',
     plugins: [
@@ -8,7 +8,12 @@ module.exports = {
         '@semantic-release/changelog',
         '@semantic-release/npm',
         '@semantic-release/github',
-        '@semantic-release/git',
+        [
+            '@semantic-release/git',
+            {
+                message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+            },
+        ],
     ],
 };
 

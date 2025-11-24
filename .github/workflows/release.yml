@@ -15,10 +15,22 @@ jobs:
       id-token: write  # Required for OIDC trusted publishing
 
     steps:
+      # 1) Get GitHub App installation token for semantic-release commits
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.SEMANTIC_RELEASE_APP_ID }}
+          private-key: ${{ secrets.SEMANTIC_RELEASE_APP_PRIVATE_KEY }}
+          owner: Abhijay
+          repositories: turbo-groups
+
+      # 2) Checkout using the App token so git pushes are from the App
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -40,11 +52,10 @@ jobs:
       - name: Build
         run: pnpm build
 
+      # 3) Run semantic-release using the App token instead of the default GITHUB_TOKEN
       - name: Release
         run: pnpm release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # NPM_TOKEN is no longer needed - @semantic-release/npm v13.1.0+ supports
-          # trusted publishing (OIDC) automatically when id-token: write permission is set
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 
 
