@@ -32,14 +32,15 @@ if (args.length === 1 && args[0] === 'list') {
 
 if (args.length < 2) {
     console.error('Usage: turbo-group <group> <task> [turbo-flags...]');
+    console.error('       tg <group> <task> [turbo-flags...]');
     console.error('');
     console.error('Examples:');
     console.error('  turbo-group dev dev');
-    console.error('  turbo-group extension build');
-    console.error('  turbo-group backend test --force');
+    console.error('  tg extension build');
+    console.error('  tg backend test --force');
     console.error('');
     console.error('List available groups:');
-    console.error('  turbo-group list');
+    console.error('  turbo-group list (or tg list)');
     process.exit(1);
 }
 

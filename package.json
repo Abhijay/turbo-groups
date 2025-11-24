@@ -16,7 +16,8 @@
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "bin": {
-        "turbo-group": "./dist/cli.js"
+        "turbo-group": "./dist/cli.js",
+        "tg": "./dist/cli.js"
     },
     "files": [
         "dist",
