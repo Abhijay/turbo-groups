@@ -408,5 +408,5 @@ MIT
 
 ## Repository
 
-https://github.com/abhijay/monorepo-groups
+https://github.com/Abhijay/monorepo-groups
 
