@@ -26,11 +26,6 @@ yarn add -D turbo-groups
 ### 1. Create `turbo-groups.yaml` at your monorepo root
 
 ```yaml
-dev:
-  - @myorg/types
-  - @myorg/frontend
-  - @myorg/api
-
 frontend:
   - @myorg/frontend
   - @myorg/types
@@ -42,15 +37,19 @@ backend:
 
 ### 2. Use the CLI
 
+You can use either `turbo-group` or the shorter `tg` alias:
+
 ```bash
-# Run dev task for the "dev" group
-npx turbo-group dev dev
+# Run dev task for the "frontend" group
+npx turbo-group frontend dev
+# or
+npx tg frontend dev
 
 # Build the "frontend" group
 npx turbo-group frontend build
 
 # Run tests for the "backend" group with additional flags
-npx turbo-group backend test --force
+npx tg backend test --force
 ```
 
 ### 3. Or use programmatically
@@ -58,7 +57,7 @@ npx turbo-group backend test --force
 ```typescript
 import { runGroup } from 'turbo-groups';
 
-await runGroup('dev', 'dev');
+await runGroup('frontend', 'dev');
 await runGroup('frontend', 'build', { turboFlags: ['--force'] });
 ```
 
@@ -76,7 +75,7 @@ tg <group> <task> [turbo-flags...]
 
 ```bash
 # Development
-turbo-group dev dev
+turbo-group frontend dev
 
 # Build specific group
 turbo-group extension build
@@ -96,7 +95,7 @@ turbo-group list
 import { runGroup } from 'turbo-groups';
 
 // Run a task for a group
-const result = await runGroup('dev', 'dev');
+const result = await runGroup('frontend', 'dev');
 if (!result.success) {
     console.error(`Task failed with exit code ${result.exitCode}`);
 }
@@ -164,7 +163,7 @@ anotherGroup:
 By default, the tool looks for `turbo-groups.yaml` in the current working directory. You can specify a custom location:
 
 ```typescript
-await runGroup('dev', 'dev', {
+await runGroup('frontend', 'dev', {
     configFile: 'config/my-groups.yaml',
 });
 ```
@@ -178,7 +177,7 @@ Add convenient scripts to your root `package.json`:
 ```json
 {
   "scripts": {
-    "dev": "turbo-group dev dev",
+    "dev": "turbo-group frontend dev",
     "dev:frontend": "turbo-group frontend dev",
     "dev:backend": "turbo-group backend dev",
     "build:frontend": "turbo-group frontend build",
@@ -243,8 +242,8 @@ Runs a turbo task for a specific group of packages.
 
 **Example:**
 ```typescript
-// Run "dev" task on "dev" group
-await runGroup('dev', 'dev');
+// Run "dev" task on "frontend" group
+await runGroup('frontend', 'dev');
 
 // Run "build" task on "frontend" group
 await runGroup('frontend', 'build');
@@ -315,14 +314,14 @@ interface ExecuteResult {
 
 ```yaml
 # turbo-groups.yaml
-dev:
+frontend:
   - @myorg/types
   - @myorg/frontend
 ```
 
 ```bash
-# Command: turbo-group dev dev
-# Executes: turbo run --parallel --continue dev --filter @myorg/types --filter @myorg/frontend
+# Command: turbo-group frontend dev
+# Executes: turbo run --parallel --continue dev --filter @myorg/frontend --filter @myorg/types
 ```
 
 **Note:** Both the CLI and programmatic API use the same order: `turbo-group <group> <task>` and `runGroup(groupName, task)` - group comes first, then task.
@@ -332,15 +331,15 @@ dev:
 ### Before (Without Groups)
 
 ```bash
-turbo run dev --parallel --continue --filter @myorg/types --filter @myorg/frontend --filter @myorg/api
+turbo run dev --parallel --continue --filter @myorg/types --filter @myorg/frontend
 ```
 
 ### After (With Groups)
 
 ```bash
-turbo-group dev dev
+turbo-group frontend dev
 # or
-pnpm dev
+tg frontend dev
 ```
 
 **Note:** The syntax is `turbo-group <group> <task>` - group comes first, then the task to run.
@@ -382,7 +381,7 @@ Config file not found: /path/to/turbo-groups.yaml
 
 **Solution:**
 - Ensure `turbo-groups.yaml` exists at your monorepo root
-- Or specify a custom path: `runGroup('dev', 'dev', { configFile: 'custom/path.yaml' })` (groupName first, then task)
+- Or specify a custom path: `runGroup('frontend', 'dev', { configFile: 'custom/path.yaml' })` (groupName first, then task)
 
 ### Package Not Found
 
