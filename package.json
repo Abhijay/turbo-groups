@@ -60,10 +60,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/abhijay/turbo-groups.git"
+        "url": "https://github.com/Abhijay/turbo-groups.git"
     },
     "bugs": {
-        "url": "https://github.com/abhijay/turbo-groups/issues"
+        "url": "https://github.com/Abhijay/turbo-groups/issues"
     },
-    "homepage": "https://github.com/abhijay/turbo-groups#readme"
+    "homepage": "https://github.com/Abhijay/turbo-groups#readme"
 }
