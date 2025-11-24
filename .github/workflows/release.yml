@@ -23,8 +23,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           # Do NOT set registry-url - it creates .npmrc which prevents OIDC trusted publishing
+          # Node.js 22+ required for semantic-release v25+
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4

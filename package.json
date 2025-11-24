@@ -34,20 +34,19 @@
         "prepublishOnly": "pnpm run build",
         "release": "semantic-release"
     },
-    "dependencies": {},
     "devDependencies": {
         "@semantic-release/changelog": "^6.0.0",
-        "@semantic-release/commit-analyzer": "^11.0.0",
+        "@semantic-release/commit-analyzer": "^13.0.0",
         "@semantic-release/git": "^10.0.0",
-        "@semantic-release/github": "^9.0.0",
-        "@semantic-release/npm": "^13.1.0",
-        "@semantic-release/release-notes-generator": "^12.0.0",
+        "@semantic-release/github": "^12.0.0",
+        "@semantic-release/npm": "^13.1.2",
+        "@semantic-release/release-notes-generator": "^14.0.0",
         "@types/node": "^18.11.17",
         "@typescript-eslint/eslint-plugin": "^5.47.0",
         "@typescript-eslint/parser": "^5.47.0",
         "eslint": "^8.30.0",
         "prettier": "^2.8.1",
-        "semantic-release": "^23.0.0",
+        "semantic-release": "^25.0.2",
         "typescript": "^4.9.5"
     },
     "peerDependencies": {
@@ -57,7 +56,7 @@
         "access": "public"
     },
     "engines": {
-        "node": ">=16.0.0"
+        "node": ">=22.0.0"
     },
     "repository": {
         "type": "git",
@@ -68,4 +67,3 @@
     },
     "homepage": "https://github.com/abhijay/turbo-groups#readme"
 }
-
