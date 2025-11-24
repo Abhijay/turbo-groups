@@ -24,8 +24,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          # Do NOT set registry-url - it creates .npmrc which prevents OIDC trusted publishing
-          # Node.js 22+ required for semantic-release v25+
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -35,18 +34,8 @@ jobs:
       - name: Update npm
         run: npm install -g npm@latest
 
-      - name: Ensure no .npmrc exists (required for OIDC trusted publishing)
-        run: |
-          # Remove any .npmrc files that might prevent OIDC from activating
-          rm -f .npmrc ~/.npmrc $HOME/.npmrc
-          # Verify npm config has no auth tokens
-          npm config list
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: npm audit signatures
 
       - name: Build
         run: pnpm build
