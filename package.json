@@ -1,6 +1,6 @@
 {
     "name": "@abhijayb/turbo-groups",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "Simplify Turborepo task execution with named package groups",
     "keywords": [
         "turborepo",

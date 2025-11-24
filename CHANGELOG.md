@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Abhijay/turbo-groups/compare/v1.0.2...v1.1.0) (2025-11-24)
+
+
+### Features
+
+* adds tg alias for turbo-group ([#20](https://github.com/Abhijay/turbo-groups/issues/20)) ([5e1eb71](https://github.com/Abhijay/turbo-groups/commit/5e1eb7148c1d26d419ac1a9a5a14c25d25984ec1))
+
 ## [1.0.2](https://github.com/Abhijay/turbo-groups/compare/v1.0.1...v1.0.2) (2025-11-24)
 
 
