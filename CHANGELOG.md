@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Abhijay/turbo-groups/compare/v1.0.1...v1.0.2) (2025-11-24)
+
+
+### Bug Fixes
+
+* trigger release to test bot ([#19](https://github.com/Abhijay/turbo-groups/issues/19)) ([2a6b760](https://github.com/Abhijay/turbo-groups/commit/2a6b760b45c691bf7dc9f1cb4301c4ba9dd6dec9))
+
 ## [1.0.1](https://github.com/Abhijay/turbo-groups/compare/v1.0.0...v1.0.1) (2025-11-24)
 
 
