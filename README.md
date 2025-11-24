@@ -68,6 +68,8 @@ await runGroup('frontend', 'build', { turboFlags: ['--force'] });
 
 ```bash
 turbo-group <group> <task> [turbo-flags...]
+# or use the alias
+tg <group> <task> [turbo-flags...]
 ```
 
 **Examples:**
